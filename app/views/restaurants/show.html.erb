@@ -1,0 +1,22 @@
+.<div class="container-fluid ">
+  <h1>Name : <%= @restaurant.name %></h1>
+  <p>Address : <%= @restaurant.address %></p>
+  <p>Phone Number : <%= @restaurant.phone_number %></p>
+  <p>Category : <%= @restaurant.category %></p>
+
+  <%= link_to "Edit", edit_restaurant_path(@restaurant), class: 'btn btn-primary' %>
+  <%= link_to "List of restaurants", restaurants_path, class: 'btn btn-warning' %>
+
+
+  <h2 class = "mt-5">Reviews</h2>
+    <% @restaurant.reviews.each do |review| %>
+      <div class="shadow-sm p-3 mb-3 bg-body rounded w-50">
+      Content : <%= review.content %> 
+      Rating : <%= review.rating %> 
+      <%= link_to("Delete", review_path(review), class: 'btn btn-danger btn-sm', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}) %>
+      </div>
+    <% end %>
+
+  <%= render "reviews/form", restaurant: @restaurant, review: @review %> 
+</div>
+
